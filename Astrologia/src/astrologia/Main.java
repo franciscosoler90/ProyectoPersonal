@@ -3,11 +3,11 @@ package astrologia;
 import java.util.Scanner;
 
 public class Main {
-
+	
+	public static Scanner teclado = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 	
-		Scanner teclado = new Scanner(System.in);
-		
 		int input = 0;
 		
         System.out.print("1. Introducir nueva carta"
@@ -32,56 +32,44 @@ public class Main {
 			}
 		} while (input <= 0 || input>= 5);   
         
-        
+
 		switch(input) {
 		case 1:
 	        System.out.println();
 			
 	        CsvReader lector = new CsvReader();
 	        Line1[] Line1Array = lector.leer();
-	        
-	        //----------------------------------------------------------------------
 
 	        Line2 cartas[] = new Line2[2];
 	        cartas = CalcularCartas.leer(Line1Array);
 
-	        //----------------------------------------------------------------------       
-	        
 	        CalcularAspectos.infoCarta(cartas);
 	        CalcularAspectos.sinastria(cartas);
-	        
-	        
-	        teclado.close();
-	        //----------------------------------------------------------------------			
+
+			finalizar();    
 			break;
 		case 2:
-	        System.out.println();
-	        
-	        teclado.close();
-	        
-	        System.out.print("---------- FIN ----------");
+			finalizar();
 			break;
 		case 3:
-	        System.out.println();
-	        
-	        teclado.close();
-	        
-	        System.out.print("---------- FIN ----------");
+			finalizar();
 			break;
 		case 4:
-	        System.out.println();
-	        
-	        teclado.close();
-	        
-	        System.out.print("---------- FIN ----------");
+			finalizar();
 			break;
 		default:
-	        System.out.println();
-	        
-	        teclado.close();
-	        
-	        System.out.print("---------- FIN ----------");
+			finalizar();
 			break;
 		}
 	}
+	
+	
+	public static void finalizar() {
+        teclado.close();
+        System.out.println();
+        System.out.println();
+        System.out.print("---------- FIN ----------");	
+	}
+	
+	
 }

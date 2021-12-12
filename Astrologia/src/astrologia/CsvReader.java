@@ -167,7 +167,7 @@ public class CsvReader {
 	        Line1Array[i] = new Line1(lineasArray[i], hour, minute, name);
 	        
 			System.out.println();
-			
+
 			teclado.nextLine();
 	
 		}

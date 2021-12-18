@@ -38,13 +38,12 @@ public class Main {
 	        System.out.println();
 			
 	        CsvReader lector = new CsvReader();
-	        Line1[] Line1Array = lector.leer();
+	        Line1 Line1Array = lector.leer();
 
-	        Line2 cartas[] = new Line2[2];
-	        cartas = CalcularCartas.leer(Line1Array);
+	        Line2 carta = null;
+	        carta = CalcularCartas.leer(Line1Array);
 
-	        CalcularAspectos.infoCarta(cartas);
-	        CalcularAspectos.sinastria(cartas);
+	        CalcularAspectos.infoCarta(carta);
 
 			finalizar();    
 			break;
@@ -66,9 +65,7 @@ public class Main {
 	
 	public static void finalizar() {
         teclado.close();
-        System.out.println();
-        System.out.println();
-        System.out.print("---------- FIN ----------");	
+        System.out.println("---------- FIN ----------");	
 	}
 	
 	

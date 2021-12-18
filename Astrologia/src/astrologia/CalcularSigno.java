@@ -7,8 +7,6 @@ public class CalcularSigno {
 	private static String cualidadArray[] = {"Cardinal","Fijo","Mutable"};
 	private static String planetasArray[] = {"Sol","Luna","Mercurio","Venus","Marte","Júpiter","Saturno"};
 
-	private int terminoArray[] = new int[5];
-
 	private String signo = "";
 	private String elemento = "";	
 	private String cualidad = "";
@@ -22,6 +20,11 @@ public class CalcularSigno {
 	private String decanato[] = new String[3];
 	
 	private int grado = 0;
+	
+	private int terminoArray[] = new int[5];
+	
+	private Boolean masculino;
+
 
 	//GETTERS
 	public String getRegente() {
@@ -56,6 +59,10 @@ public class CalcularSigno {
 		return grado;
 	}
 	
+	public Boolean getMasculino() {
+		return masculino;
+	}
+	
 	public String[] getTriplicidad() {
 		return triplicidad;
 	}
@@ -85,6 +92,8 @@ public class CalcularSigno {
 				// ARIES
 		        case "a":  
 			        this.signo = signosArray[0];
+			        
+			        this.masculino = true;
 			        
 			        this.elemento = elementosArray[0];	
 			        
@@ -124,6 +133,8 @@ public class CalcularSigno {
 			    // TAURO
 		        case "b":  
 			        this.signo = signosArray[1];
+
+			        this.masculino = false;
 			        
 			        this.elemento = elementosArray[1];	
 			        
@@ -163,6 +174,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[2];
 			        
+			        this.masculino = true;
+			        
 			        this.elemento = elementosArray[2];	
 			        
 			        this.cualidad = cualidadArray[2];	
@@ -198,6 +211,8 @@ public class CalcularSigno {
 		        case "d":  
 		        	
 			        this.signo = signosArray[3];
+			        
+			        this.masculino = false;
 			        
 			        this.elemento = elementosArray[3];		
 			        
@@ -239,6 +254,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[4];
 			        
+			        this.masculino = true;
+			        
 			        this.elemento = elementosArray[0];	
 			        
 			        this.cualidad = cualidadArray[1];	
@@ -274,6 +291,8 @@ public class CalcularSigno {
 		        case "f":  
 		        	
 			        this.signo = signosArray[5];
+			        
+			        this.masculino = false;
 			        
 			        this.elemento = elementosArray[1];	
 			        
@@ -315,6 +334,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[6];
 			        
+			        this.masculino = true;
+			        
 			        this.elemento = elementosArray[2];	
 			        
 			        this.cualidad = cualidadArray[0];	
@@ -355,6 +376,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[7];
 			        
+			        this.masculino = false;
+			        
 			        this.elemento = elementosArray[3];		
 			        
 			        this.cualidad = cualidadArray[1];	
@@ -393,6 +416,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[8];
 			        
+			        this.masculino = true;
+			        
 			        this.elemento = elementosArray[0];	
 			        
 			        this.cualidad = cualidadArray[2];	
@@ -428,6 +453,8 @@ public class CalcularSigno {
 		        case "j":  
 		        	
 			        this.signo = signosArray[9];
+			        
+			        this.masculino = false;
 			        
 			        this.elemento = elementosArray[1];	
 			        
@@ -469,6 +496,8 @@ public class CalcularSigno {
 		        	
 			        this.signo = signosArray[10];
 			        
+			        this.masculino = true;
+			        
 			        this.elemento = elementosArray[2];	
 			        
 			        this.cualidad = cualidadArray[1];
@@ -504,6 +533,8 @@ public class CalcularSigno {
 		        case "l":  
 		        	
 			        this.signo = signosArray[11];
+			        
+			        this.masculino = false;
 			        
 			        this.elemento = elementosArray[3];	
 			        

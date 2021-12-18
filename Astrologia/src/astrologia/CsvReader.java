@@ -12,18 +12,17 @@ import java.util.Scanner;
 
 public class CsvReader {
 	
-	public Line1[] leer() {
+	public Line1 leer() {
 		
 		String line = "";
 		String fileName = "";
 		String name = "";
 		
-		String[][] lineasArray = new String[2][2];
+		String[] lineasArray = new String[2];
 
 		String[] values;
 		
-		Line1[] Line1Array;
-		Line1Array = new Line1[2];
+		Line1 linea;
 		
 		int year = 0;
 		int month = 0;
@@ -36,11 +35,7 @@ public class CsvReader {
 		Scanner teclado = new Scanner(System.in);
 		
 		// --------------------------------------------------------------------------------------------------------------------		
-		
-		for(int i = 0; i < 2; i++) {
-			
-			comprobacion = 0;
-				
+
 			System.out.print("Nombre: ");		
 			
             name = teclado.nextLine();			
@@ -120,18 +115,17 @@ public class CsvReader {
 					
 					try(BufferedReader br = Files.newBufferedReader( Paths.get( file.toUri() ) ) ) {
 						
-						while( ( line = br.readLine() ) != null) {
+						while( ( line = br.readLine() ) != null && comprobacion < 2 ) {
 							
 							values = line.split(",");
 							
 							fileName = file.getFileName().toString();
 							fileName = fileName.substring(0, fileName.length()-4);
 						
-							
 							// Comprobar si coindice la misma fecha introducida, el nombre del archivo y el siguiente día
 							if(fileName.equals(values[2]) && (values[2].equals(String.valueOf(year)) && values[3].equals(String.valueOf(month)) && values[4].equals(String.valueOf(day)) && comprobacion==0) || comprobacion==1) {
 								
-								lineasArray[i][comprobacion] = line;
+								lineasArray[comprobacion] = line;
 								comprobacion++;
 								
 							}
@@ -153,9 +147,7 @@ public class CsvReader {
 				
 				
 				if(comprobacion==0) {
-					i--;
-					System.out.println();
-					System.out.print("Carta no encontrada");
+					System.out.println("Carta no encontrada");
 					System.out.println();
 				}
 				
@@ -163,20 +155,11 @@ public class CsvReader {
 			    System.err.println(ex);
 			}
 			
-
-	        Line1Array[i] = new Line1(lineasArray[i], hour, minute, name);
+			teclado.close();
+			
+	        linea = new Line1(lineasArray, hour, minute, name);
 	        
-			System.out.println();
-
-			teclado.nextLine();
-	
-		}
-		
-		// --------------------------------------------------------------------------------------------------------------------
-		        
-		teclado.close();
-		
-		return Line1Array;
+	        return linea;
 		
 	}
 }

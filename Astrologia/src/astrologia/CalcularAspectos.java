@@ -2,19 +2,15 @@ package astrologia;
 
 public class CalcularAspectos {
 	
-	public static void infoCarta(Line2[] cartas) {
+	public static void infoCarta(Line2 carta) {
 		
-	CalcularSigno calcular = null;
-	Line2 carta;
-
-		for(int i = 0; i < cartas.length; i++) {
+			CalcularSigno calcular = null;
 
 		    System.out.println();
-	        System.out.printf("---------- Carta de %s ----------", cartas[i].getName());
+	        System.out.printf("---------- Carta de %s ----------", carta.getName());
 		    System.out.println();
 		    System.out.println();
 
-			carta = cartas[i];
 			
 			System.out.printf("%d/%02d/%02d - %02d:%02d", carta.getDay() , carta.getMonth() , carta.getYear(), carta.getHour(), carta.getMinute() );
 			System.out.println();
@@ -56,7 +52,6 @@ public class CalcularAspectos {
 			
 			System.out.println();
 		}
-    }
 		
 	//--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -193,15 +188,11 @@ public class CalcularAspectos {
 	
 	//--------------------------------------------------------------------------------------------------------------------------------------------	
 	
-	public static void sinastria(Line2[] cartas) {	
+	public static void sinastria(Line2 carta1, Line2 carta2) {	
 		
-		if(cartas.length == 2) {
-			
 			CalcularSigno calcular = null;		
 			CalcularSigno calcular2 = null;
-			Line2 carta;		
-			Line2 carta2;
-			
+
 			int Grado1 = 0;
 			int Minuto1 = 0;
 			int Grado2 = 0;
@@ -212,11 +203,8 @@ public class CalcularAspectos {
 			String n1 = "";
 			String n2 = "";
 			
-			carta = cartas[0];
-			carta2 = cartas[1];
-			
 			System.out.println();		
-	        System.out.printf("---------- Sinastra entre %s y %s ----------", cartas[0].getName(), cartas[1].getName() );
+	        System.out.printf("---------- Sinastra entre %s y %s ----------", carta1.getName(), carta2.getName() );
 		    System.out.println();
 			
 			for(int i = 0; i < 7 ; i++) {
@@ -224,45 +212,45 @@ public class CalcularAspectos {
 				switch(i) {
 				
 				case 0:
-					calcular = new CalcularSigno(carta.getSignoSol());		
-					Grado1 = carta.getGradoSol();
-					Minuto1 = carta.getMinutoSol();
+					calcular = new CalcularSigno(carta1.getSignoSol());		
+					Grado1 = carta1.getGradoSol();
+					Minuto1 = carta1.getMinutoSol();
 					n1 = CalcularPlaneta.nombre(1);
 					break;
 				case 1:
-					calcular = new CalcularSigno(carta.getSignoLuna());	
-					Grado1 = carta.getGradoLuna();
-					Minuto1 = carta.getMinutoLuna();
+					calcular = new CalcularSigno(carta1.getSignoLuna());	
+					Grado1 = carta1.getGradoLuna();
+					Minuto1 = carta1.getMinutoLuna();
 					n1 = CalcularPlaneta.nombre(2);
 					break;
 				case 2:
-					calcular = new CalcularSigno(carta.getSignoMercurio());			
-					Grado1 = carta.getGradoMercurio();
-					Minuto1 = carta.getMinutoMercurio();
+					calcular = new CalcularSigno(carta1.getSignoMercurio());			
+					Grado1 = carta1.getGradoMercurio();
+					Minuto1 = carta1.getMinutoMercurio();
 					n1 = CalcularPlaneta.nombre(3);
 					break;
 				case 3:
-					calcular = new CalcularSigno(carta.getSignoVenus());	
-					Grado1 = carta.getGradoVenus();
-					Minuto1 = carta.getMinutoVenus();
+					calcular = new CalcularSigno(carta1.getSignoVenus());	
+					Grado1 = carta1.getGradoVenus();
+					Minuto1 = carta1.getMinutoVenus();
 					n1 = CalcularPlaneta.nombre(4);
 					break;
 				case 4:
-					calcular = new CalcularSigno(carta.getSignoMarte());		
-					Grado1 = carta.getGradoMarte();
-					Minuto1 = carta.getMinutoMarte();
+					calcular = new CalcularSigno(carta1.getSignoMarte());		
+					Grado1 = carta1.getGradoMarte();
+					Minuto1 = carta1.getMinutoMarte();
 					n1 = CalcularPlaneta.nombre(5);
 					break;
 				case 5:
-					calcular = new CalcularSigno(carta.getSignoJupiter());			
-					Grado1 = carta.getGradoJupiter();
-					Minuto1 = carta.getMinutoJupiter();
+					calcular = new CalcularSigno(carta1.getSignoJupiter());			
+					Grado1 = carta1.getGradoJupiter();
+					Minuto1 = carta1.getMinutoJupiter();
 					n1 = CalcularPlaneta.nombre(6);
 					break;
 				case 6:
-					calcular = new CalcularSigno(carta.getSignoSaturno());	
-					Grado1 = carta.getGradoSaturno();
-					Minuto1 = carta.getMinutoSaturno();
+					calcular = new CalcularSigno(carta1.getSignoSaturno());	
+					Grado1 = carta1.getGradoSaturno();
+					Minuto1 = carta1.getMinutoSaturno();
 					n1 = CalcularPlaneta.nombre(7);
 					break;
 		
@@ -328,10 +316,6 @@ public class CalcularAspectos {
 
 				}
 			}
-			
-			
-		}else {
-			System.out.printf("Número de cartas no válido");			
-		}
+
 	}
 }

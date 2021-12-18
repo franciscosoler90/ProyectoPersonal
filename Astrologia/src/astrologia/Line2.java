@@ -205,8 +205,7 @@ public class Line2 {
     	this.signoMarte = signoMarte;
     	this.signoJupiter = signoJupiter;
     	this.signoSaturno = signoSaturno;
-    }	
-	
-	
+    }
+
 
 }

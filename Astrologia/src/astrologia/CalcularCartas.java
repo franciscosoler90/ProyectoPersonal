@@ -2,10 +2,10 @@ package astrologia;
 
 public class CalcularCartas {
 	
-	public static Line2[] leer( Line1[] lineas ) {
+	public static Line2 leer( Line1 lineas ) {
 		
 	String values[] = null;
-	Line2 cartas[] = new Line2[2];	
+	Line2 cartas = null;	
 	
 	int gradoSol = 0;
 	int minutoSol = 0;
@@ -73,7 +73,7 @@ public class CalcularCartas {
 
 	for(int i = 0; i < 2; i++) {
 		
-		lineas2 = lineas[i].getLineasArray();
+		lineas2 = lineas.getLineasArray();
 		year = Integer.parseInt(lineas2[0].toString().split(",")[4]);
 		month = Integer.parseInt(lineas2[0].toString().split(",")[3]);
 		day = Integer.parseInt(lineas2[0].toString().split(",")[2]);
@@ -151,21 +151,20 @@ public class CalcularCartas {
 		}	
 		//------------------------------------------------------------------------------
  
-        GradoMinutoSigno Sol = CalcularGrados.calcularMedia(gradoSol, minutoSol, gradoSol2, minutoSol2, lineas[i].getHour(), signoSol, signoSol2);
-		GradoMinutoSigno Luna = CalcularGrados.calcularMedia(gradoLuna, minutoLuna, gradoLuna2, minutoLuna2, lineas[i].getHour(), signoLuna, signoLuna2);   
-		GradoMinutoSigno Mercurio = CalcularGrados.calcularMedia(gradoMercurio, minutoMercurio, gradoMercurio2, minutoMercurio2, lineas[i].getHour(), signoMercurio, signoMercurio2);  
-		GradoMinutoSigno Venus = CalcularGrados.calcularMedia(gradoVenus, minutoVenus, gradoVenus2, minutoVenus2, lineas[i].getHour(), signoVenus, signoVenus2);    
-		GradoMinutoSigno Marte = CalcularGrados.calcularMedia(gradoMarte, minutoMarte, gradoMarte2, minutoMarte2, lineas[i].getHour(), signoMarte, signoMarte2);  
-		GradoMinutoSigno Jupiter = CalcularGrados.calcularMedia(gradoJupiter, minutoJupiter, gradoJupiter2, minutoJupiter2, lineas[i].getHour(), signoJupiter, signoJupiter2);  
-		GradoMinutoSigno Saturno = CalcularGrados.calcularMedia(gradoSaturno, minutoSaturno, gradoSaturno2, minutoSaturno2, lineas[i].getHour(), signoSaturno, signoSaturno2);  
+        GradoMinutoSigno Sol = CalcularGrados.calcularMedia(gradoSol, minutoSol, gradoSol2, minutoSol2, lineas.getHour(), signoSol, signoSol2);
+		GradoMinutoSigno Luna = CalcularGrados.calcularMedia(gradoLuna, minutoLuna, gradoLuna2, minutoLuna2, lineas.getHour(), signoLuna, signoLuna2);   
+		GradoMinutoSigno Mercurio = CalcularGrados.calcularMedia(gradoMercurio, minutoMercurio, gradoMercurio2, minutoMercurio2, lineas.getHour(), signoMercurio, signoMercurio2);  
+		GradoMinutoSigno Venus = CalcularGrados.calcularMedia(gradoVenus, minutoVenus, gradoVenus2, minutoVenus2, lineas.getHour(), signoVenus, signoVenus2);    
+		GradoMinutoSigno Marte = CalcularGrados.calcularMedia(gradoMarte, minutoMarte, gradoMarte2, minutoMarte2, lineas.getHour(), signoMarte, signoMarte2);  
+		GradoMinutoSigno Jupiter = CalcularGrados.calcularMedia(gradoJupiter, minutoJupiter, gradoJupiter2, minutoJupiter2, lineas.getHour(), signoJupiter, signoJupiter2);  
+		GradoMinutoSigno Saturno = CalcularGrados.calcularMedia(gradoSaturno, minutoSaturno, gradoSaturno2, minutoSaturno2, lineas.getHour(), signoSaturno, signoSaturno2);  
 
 		//------------------------------------------------------------------------------
 
    
-        cartas[i] = new Line2(day, month, year, lineas[i].getHour(), lineas[i].getMinute(), lineas[i].getName(), Sol.getGrado(), Sol.getMinuto(), Luna.getGrado(), Luna.getMinuto(), Mercurio.getGrado(), Mercurio.getMinuto(), Venus.getGrado(), Venus.getMinuto(), Marte.getGrado(), Marte.getMinuto(), Jupiter.getGrado(), Jupiter.getMinuto(), Saturno.getGrado(), Saturno.getMinuto(), Sol.getSigno(), Luna.getSigno(), Mercurio.getSigno(), Venus.getSigno(), Marte.getSigno(), Jupiter.getSigno(), Saturno.getSigno() );       
+        cartas = new Line2(day, month, year, lineas.getHour(), lineas.getMinute(), lineas.getName(), Sol.getGrado(), Sol.getMinuto(), Luna.getGrado(), Luna.getMinuto(), Mercurio.getGrado(), Mercurio.getMinuto(), Venus.getGrado(), Venus.getMinuto(), Marte.getGrado(), Marte.getMinuto(), Jupiter.getGrado(), Jupiter.getMinuto(), Saturno.getGrado(), Saturno.getMinuto(), Sol.getSigno(), Luna.getSigno(), Mercurio.getSigno(), Venus.getSigno(), Marte.getSigno(), Jupiter.getSigno(), Saturno.getSigno() );       
 
-        
-        Escribir.escribir(cartas[i]);
+        Escribir.escribir(cartas);
         
 		}
 	return cartas;

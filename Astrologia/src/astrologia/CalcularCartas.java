@@ -5,7 +5,7 @@ public class CalcularCartas {
 	public static Line2 leer( Line1 lineas ) {
 		
 	String values[] = null;
-	Line2 cartas = null;	
+	Line2 carta = null;	
 	
 	int gradoSol = 0;
 	int minutoSol = 0;
@@ -162,11 +162,12 @@ public class CalcularCartas {
 		//------------------------------------------------------------------------------
 
    
-        cartas = new Line2(day, month, year, lineas.getHour(), lineas.getMinute(), lineas.getName(), Sol.getGrado(), Sol.getMinuto(), Luna.getGrado(), Luna.getMinuto(), Mercurio.getGrado(), Mercurio.getMinuto(), Venus.getGrado(), Venus.getMinuto(), Marte.getGrado(), Marte.getMinuto(), Jupiter.getGrado(), Jupiter.getMinuto(), Saturno.getGrado(), Saturno.getMinuto(), Sol.getSigno(), Luna.getSigno(), Mercurio.getSigno(), Venus.getSigno(), Marte.getSigno(), Jupiter.getSigno(), Saturno.getSigno() );       
+        carta = new Line2(day, month, year, lineas.getHour(), lineas.getMinute(), lineas.getName(), Sol.getGrado(), Sol.getMinuto(), Luna.getGrado(), Luna.getMinuto(), Mercurio.getGrado(), Mercurio.getMinuto(), Venus.getGrado(), Venus.getMinuto(), Marte.getGrado(), Marte.getMinuto(), Jupiter.getGrado(), Jupiter.getMinuto(), Saturno.getGrado(), Saturno.getMinuto(), Sol.getSigno(), Luna.getSigno(), Mercurio.getSigno(), Venus.getSigno(), Marte.getSigno(), Jupiter.getSigno(), Saturno.getSigno() );       
 
-        Escribir.escribir(cartas);
+
         
 		}
-	return cartas;
+	
+	return carta;
 	}
 }

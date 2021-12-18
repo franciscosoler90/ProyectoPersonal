@@ -11,7 +11,6 @@ public class CalcularAspectos {
 		    System.out.println();
 		    System.out.println();
 
-			
 			System.out.printf("%d/%02d/%02d - %02d:%02d", carta.getDay() , carta.getMonth() , carta.getYear(), carta.getHour(), carta.getMinute() );
 			System.out.println();
 			System.out.println();
@@ -176,7 +175,6 @@ public class CalcularAspectos {
 				
 				//Aspectos
 				if(result3[0]>0 && i<j) {
-				//if(i<j) {
 					System.out.println();
 					System.out.printf("Aspecto: %dº - Diferencia: %d,%02d | %s en %d,%02d de %s - %s en %d,%02d de %s", result3[0], result3[1], result3[2], n1, Grado1, Minuto1, calcular.getSigno(), n2, Grado2, Minuto2, calcular2.getSigno() );			
 				}

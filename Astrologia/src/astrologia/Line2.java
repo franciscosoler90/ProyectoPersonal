@@ -143,12 +143,14 @@ public class Line2 {
 	}	
 	
 	public String getAllInfo() {
-		return 	String.valueOf( this.year ) + ";" + 
+		return 	name + ";" + 
+				String.valueOf( this.year ) + ";" + 
 				String.valueOf( this.month ) + ";" + 
 				String.valueOf( this.day ) + ";" + 
 				String.valueOf( this.hour ) + ";" + 
-				String.valueOf( this.minute ) + ";" + 
-				name + ";" + 
+				String.valueOf( this.minute );
+				
+				/*
 				String.valueOf( this.GradoSol ) + ";" + 
 				String.valueOf( this.MinutoSol ) + ";" + 
 				String.valueOf( this.GradoLuna ) + ";" + 
@@ -170,6 +172,8 @@ public class Line2 {
 				String.valueOf( this.signoMarte ) + ";" + 
 				String.valueOf( this.signoJupiter ) + ";" + 
 				String.valueOf( this.signoSaturno );	
+				
+				*/
 	}
 	
     Line2(int year, int month, int day, int hour, int minute, String name, int GradoSol, int MinutoSol, int GradoLuna, int MinutoLuna, int GradoMercurio, int MinutoMercurio, int GradoVenus, int MinutoVenus, int GradoMarte, int MinutoMarte, int GradoJupiter, int MinutoJupiter, int GradoSaturno, int MinutoSaturno, String signoSol, String signoLuna, String signoMercurio, String signoVenus, String signoMarte, String signoJupiter, String signoSaturno)

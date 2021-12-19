@@ -1,57 +1,57 @@
 package astrologia;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Prueba {
 	
 	public static class DateValidation {
+		
+	    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
 	    public static void main(String[] args) {
 	        
-	        Scanner sc = new Scanner(System.in);
-	        
-	        String date = "30/4/1990";
-	        
-	        if(dateValidation(date)==true)
-			System.out.println("Date is valid");
-	        else
-			System.out.println("Date is invalid");
-	        
-	        sc.close();
+
+			System.out.printf("\n%d", addDay(26,3,1990)[2] );
 			
 		}
 	    
-	    private static boolean dateValidation(String date){
+	    
+	    private static Integer[] addDay(int day, int month, int year) {
 	    	
-	    	
-	    	
-			boolean status = false;
-			if (checkDate(date)) {
-				DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-				dateFormat.setLenient(false);
-				try {
-					dateFormat.parse(date);
-					status = true;
-					} catch (Exception e) {
-					status = false;
-				}
+	    	String dt = day+"/"+month+"/"+year;
+	    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    	Calendar c = Calendar.getInstance();
+	    	try {
+				c.setTime(sdf.parse(dt));
+			} catch (ParseException e) {
+				e.printStackTrace();
 			}
-			return status;
-			
-			
-			
+	    	c.add(Calendar.DATE, 1);
+	    	dt = sdf.format(c.getTime());
+	    	
+	    	String[] sArray = dt.split("/");
+	    	
+	    	Integer[] intArray = new Integer[sArray.length];
+	    	
+	    	for(int i = 0; i < sArray.length; i++) {
+	    		
+	    		intArray[i] = Integer.parseInt( sArray[i] );
+	    		
+	    	}
+
+	    	
+			return intArray;
 		}
-	    
-	    static boolean checkDate(String date) {
-			String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
-			boolean flag = false;
-			if (date.matches(pattern)) {
-				flag = true;
-			}
-			return flag;
-		}
-	    
 	    
 	    
 	    

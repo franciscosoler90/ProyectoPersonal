@@ -15,7 +15,7 @@ public class Main {
 			opcion = menu();
 			opciones(opcion);
 			
-		}while(opcion < 1 || opcion > 4);
+		}while(opcion > 0 && opcion <= 3);
 		
 		teclado.close();
 	}
@@ -47,7 +47,8 @@ public class Main {
 				Escribir.escribir(carta);
 			}
 			
-			finalizar();    
+			System.out.println();
+
 			break;
 		case 2:
 			finalizar();
@@ -75,9 +76,10 @@ public class Main {
         System.out.print("1. Introducir nueva carta"
         		+ "\n2. Buscar una carta"
         		+ "\n3. Sinastria"
-        		+ "\n4. Salir"
+        		+ "\n0. Salir"
         		);      
         
+		System.out.println();
 		System.out.println();
         
 		do {
@@ -89,10 +91,10 @@ public class Main {
 			}
             input = teclado.nextInt();
             
-            if(input <= 0 || input>= 5){
-				System.out.println("El número debe ser 1 - 4");                                           
+            if(input < 0 || input > 3){
+				System.out.println("El número debe ser 0 - 3");                                           
 			}
-		} while (input <= 0 || input>= 5);
+		} while (input < 0 || input > 3);
 		
 		
         System.out.println();
@@ -102,6 +104,7 @@ public class Main {
 	
 	public static void finalizar() {
         System.out.println("---------- FIN ----------");	
+        System.out.println();
 	}
 	
 	public static Boolean confirmar(String cadena) {

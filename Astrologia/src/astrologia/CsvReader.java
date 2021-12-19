@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -138,10 +139,14 @@ public class CsvReader {
 						fileName = fileName.substring(0, fileName.length()-4);
 						
 						// Comprobar si coindice la misma fecha introducida, el nombre del archivo y el siguiente día
-						if(fileName.equals(values[2]) && (values[2].equals(String.valueOf(year)) && values[3].equals(String.valueOf(month)) && values[4].equals(String.valueOf(day)) && comprobacion==0) || comprobacion==1) {
+						if(fileName.equals(values[2]) && (values[2].equals(String.valueOf(year)) && values[3].equals(String.valueOf(month)) && values[4].equals(String.valueOf(day) )) ) {
 							
 							lineasArray[comprobacion] = line;
 							comprobacion++;
+							
+							day = addDay(day,month,year)[0];
+							month = addDay(day,month,year)[1];
+							year = addDay(day,month,year)[2];
 							
 						}
 					}
@@ -195,13 +200,40 @@ public class CsvReader {
 		return status;
 	}
     
-    static boolean checkDate(String date) {
+    private static boolean checkDate(String date) {
 		String pattern = "(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/([0-9]{4})";
 		boolean flag = false;
 		if (date.matches(pattern)) {
 			flag = true;
 		}
 		return flag;
+	}
+    
+    private static Integer[] addDay(int day, int month, int year) {
+    	
+    	String dt = day+"/"+month+"/"+year;
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    	Calendar c = Calendar.getInstance();
+    	try {
+			c.setTime(sdf.parse(dt));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+    	c.add(Calendar.DATE, 1);
+    	dt = sdf.format(c.getTime());
+    	
+    	String[] sArray = dt.split("/");
+    	
+    	Integer[] intArray = new Integer[sArray.length];
+    	
+    	for(int i = 0; i < sArray.length; i++) {
+    		
+    		intArray[i] = Integer.parseInt( sArray[i] );
+    		
+    	}
+
+    	
+		return intArray;
 	}
 	
 	

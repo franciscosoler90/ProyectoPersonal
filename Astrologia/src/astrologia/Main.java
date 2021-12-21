@@ -19,27 +19,27 @@ public class Main {
 		
 		teclado.close();
 	}
-
-        
+	
+	
 	public static void opciones(int opcion) {
-			
+		
 		switch(opcion) {
-		case 1:
-
+			case 1:
+			
 			String confirmacion = "";
 			
 	        CsvReader lector = new CsvReader();
-	        Line1 Line1Array = lector.leer(teclado);
-
+	        Line1 Line1Array = lector.searchCharts(teclado);
+			
 	        Line2 carta = null;
 	        carta = CalcularCartas.leer(Line1Array);
-
+			
 	        CalcularAspectos.infoCarta(carta);
 	        
 			System.out.print("\n¿Guardar la carta? (Y/N): ");  
 			
 			teclado.nextLine();
-
+			
 			confirmacion = teclado.nextLine();
 			
 			if( confirmar(confirmacion) ) {
@@ -48,84 +48,93 @@ public class Main {
 			}
 			
 			System.out.println();
-
-			break;
+			
+		break;
 		case 2:
-			finalizar();
-			break;
-		case 3:
-			finalizar();
-			break;
-		case 4:
-			finalizar();
-			break;
-		default:
-			finalizar();
-			break;
-		}
-
-	}
-
-	
-	
-	public static Integer menu() {
 		
-
+		String nombre = "";
+		
+		System.out.print("\nIntroduce el nombre: ");  
+		
+		teclado.nextLine();
+		
+		nombre = teclado.nextLine();
+		
+		CsvReader.searchName(nombre, teclado);
+		
+		break;
+		case 3:
+		finalizar();
+		break;
+		case 4:
+		finalizar();
+		break;
+		default:
+		finalizar();
+		break;
+		}
+		
+		}
+		
+		
+		public static Integer menu() {
+		
+		
 		int input = 0;
 		
         System.out.print("1. Introducir nueva carta"
-        		+ "\n2. Buscar una carta"
-        		+ "\n3. Sinastria"
-        		+ "\n0. Salir"
-        		);      
+		+ "\n2. Buscar una carta"
+		+ "\n3. Sinastria"
+		+ "\n0. Salir"
+		);      
         
 		System.out.println();
 		System.out.println();
         
 		do {
-            System.out.print("Elige una opción: ");
-            while (!teclado.hasNextInt()) {
-				System.out.println("Valor no válido");
-				teclado.next();
-				System.out.print("Elige una opción: ");                               
-			}
-            input = teclado.nextInt();
-            
-            if(input < 0 || input > 3){
-				System.out.println("El número debe ser 0 - 3");                                           
-			}
+		System.out.print("Elige una opción: ");
+		while (!teclado.hasNextInt()) {
+		System.out.println("Valor no válido");
+		teclado.next();
+		System.out.print("Elige una opción: ");                               
+		}
+		input = teclado.nextInt();
+		
+		if(input < 0 || input > 3){
+		System.out.println("El número debe ser 0 - 3");                                           
+		}
 		} while (input < 0 || input > 3);
 		
 		
         System.out.println();
 		return input;
-	}
-	
-	
-	public static void finalizar() {
+		}
+		
+		
+		public static void finalizar() {
         System.out.println("---------- FIN ----------");	
         System.out.println();
-	}
-	
-	public static Boolean confirmar(String cadena) {
+		}
+		
+		public static Boolean confirmar(String cadena) {
 		
 		if( cadena.length()>0 ) {
-			
-			if( String.valueOf( cadena.toLowerCase().charAt(0) ).equals("y") ) {
-				return true;
-			}else {
-				return false;
-			}
-			
+		
+		if( String.valueOf( cadena.toLowerCase().charAt(0) ).equals("y") ) {
+		return true;
 		}else {
-			
-			return false;
-			
+		return false;
 		}
-	}
-	
-	
-
-
-	
-}
+		
+		}else {
+		
+		return false;
+		
+		}
+		}
+		
+		
+		
+		
+		
+		}		

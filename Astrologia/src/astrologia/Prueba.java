@@ -17,10 +17,10 @@ public class Prueba {
 	public static class DateValidation {
 		
 	    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
+		
 	    public static void main(String[] args) {
 	        
-
+			
 			System.out.printf("\n%d", addDay(26,3,1990)[2] );
 			
 		}
@@ -33,7 +33,7 @@ public class Prueba {
 	    	Calendar c = Calendar.getInstance();
 	    	try {
 				c.setTime(sdf.parse(dt));
-			} catch (ParseException e) {
+				} catch (ParseException e) {
 				e.printStackTrace();
 			}
 	    	c.add(Calendar.DATE, 1);
@@ -47,15 +47,15 @@ public class Prueba {
 	    		
 	    		intArray[i] = Integer.parseInt( sArray[i] );
 	    		
-	    	}
-
-	    	
-			return intArray;
+			}
+			
+		
+		return intArray;
 		}
 	    
 	    
 	    
 	    
-	}
-	
-}
+		}
+		
+		}		

@@ -13,7 +13,7 @@ public class GradoMinutoSigno {
 	public int getMinuto() {
 		return minuto;
 	}	
-
+	
 	public String getSigno() {
 		return signo;
 	}
@@ -23,5 +23,5 @@ public class GradoMinutoSigno {
         this.grado = grado;
         this.minuto = minuto;        
         this.signo = signo;
-    }
+	}
 }

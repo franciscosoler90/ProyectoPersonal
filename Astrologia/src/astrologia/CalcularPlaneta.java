@@ -7,23 +7,23 @@ public class CalcularPlaneta {
 		switch (planeta) 
 	    {
 	        case 0:
-	        		return "Ascendente";
+			return "Ascendente";
 	        case 1:  
-	        		return "Sol";
+			return "Sol";
 	        case 2:  
-	        		return "Luna";
+			return "Luna";
 	        case 3:  
-	        		return "Mercurio";
+			return "Mercurio";
 	        case 4:  
-	        		return "Venus";
+			return "Venus";
 	        case 5:  
-	        		return "Marte";
+			return "Marte";
 	        case 6:  
-	        		return "Júpiter";
+			return "Júpiter";
 	        case 7:  
-	        		return "Saturno";
+			return "Saturno";
 	        default: 
-	        		return "Inválido";
-	    }
+			return "Inválido";
+		}
 	}
 }

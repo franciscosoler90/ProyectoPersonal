@@ -117,6 +117,8 @@ public class Main {
 		}
 		
 		public static Boolean confirmar(String cadena) {
+			
+		System.out.print("¿Confirmar? (Y/N): ");
 		
 		if( cadena.length()>0 ) {
 		

@@ -240,8 +240,7 @@ public class CsvReader {
 	
 	System.out.println();
 	System.out.println();
-	System.out.print("¿Confirmar? (Y/N): ");
-	
+
 	confirmacion = teclado.nextLine();
 	
 	if (Main.confirmar(confirmacion)) {

@@ -125,13 +125,16 @@ public class CsvReader {
 	
 	Line1 linea;
 	
-	var pathName = Paths.get("C:\\Users\\Fran\\Downloads\\Ephemeris-CSV\\Ephemeris CSV");
+	
+
+	var pathName = Paths.get("C:\\Users\\Fran\\Downloads\\Documentos\\Astrologia\\Ephemeris-CSV");
 	DirectoryStream.Filter<Path> filter = file -> { return file.toString().endsWith(".csv"); };				
 	
 	try (DirectoryStream<Path> fileList = Files.newDirectoryStream(pathName, filter)) {
-	
+		
+		
 	for (Path file: fileList) {
-	
+		
 	try(BufferedReader br = Files.newBufferedReader( Paths.get( file.toUri() ) ) ) {
 	
 	while( ( line = br.readLine() ) != null && comprobacion < 2 ) {
@@ -143,15 +146,15 @@ public class CsvReader {
 	
 	// Comprobar si coindice la misma fecha introducida, el nombre del archivo y el siguiente día
 	if(fileName.equals(values[2]) && (values[2].equals(String.valueOf(year)) && values[3].equals(String.valueOf(month)) && values[4].equals(String.valueOf(day) )) ) {
+		
+		lineasArray[comprobacion] = line;
+		comprobacion++;
 	
-	lineasArray[comprobacion] = line;
-	comprobacion++;
+		day = addDay(day,month,year)[0];
+		month = addDay(day,month,year)[1];
+		year = addDay(day,month,year)[2];
 	
-	day = addDay(day,month,year)[0];
-	month = addDay(day,month,year)[1];
-	year = addDay(day,month,year)[2];
-	
-	}
+		}
 	}
 	
 	br.close();
@@ -170,15 +173,19 @@ public class CsvReader {
 	
 	
 	if(comprobacion==0) {
-	System.out.println("Carta no encontrada");
-	System.out.println();
+		System.out.println("Carta no encontrada");
+		System.out.println();
 	}
 	
 	} catch (IOException | DirectoryIteratorException ex) {
 	System.err.println(ex);
 	}
 	
+	
 	linea = new Line1(lineasArray, hour, minute, name);
+	
+	System.out.println(linea.toString());
+	
 	
 	return linea;
 	

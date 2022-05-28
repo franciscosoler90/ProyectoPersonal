@@ -26,11 +26,25 @@ public class Line1 {
 	}	
 	
 	//CONSTRUCTOR
-	Line1(String[] lineasArray, int hour, int minute, String name)
+	Line1(String[] lineas, int hour, int minute, String name)
 	{
-		this.lineas = lineasArray;
+		this.lineas = lineas;
 		this.hour = hour;
 		this.minute = minute;
 		this.name = name;
 	}
-}
+	
+	public String toString() {
+		
+		String lineasArray = "";
+		
+		for(int i = 0; i < lineas.length; i++) {
+			
+			lineasArray+= lineas[i] + "\n";
+			
+		}
+		
+		
+		return "Nombre: " + name + " - " + "Hora: " + hour + ":" + minute + "\n" + lineasArray;
+		}
+	}

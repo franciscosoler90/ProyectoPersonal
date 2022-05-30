@@ -1,3 +1,5 @@
+//Francisco José Soler Conchello
+
 package main;
 
 import java.awt.EventQueue;

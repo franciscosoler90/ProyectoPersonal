@@ -2,6 +2,7 @@ package utilidades;
 
 public class Fecha {
 	
+
 	private Integer day = 1, month = 1, year = 2022;
 
 	public Fecha(Integer day, Integer month, Integer year) {
@@ -10,6 +11,17 @@ public class Fecha {
 		this.year = year;
 	}
 	
+	public Integer getDay() {
+		return day;
+	}
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public Integer getYear() {
+		return year;
+	}	
 	
 	public Boolean isCorrect() {
 		
@@ -34,7 +46,7 @@ public class Fecha {
 				
 				if ((this.year % 4 == 0) && ((this.year % 100 != 0) || (this.year % 400 == 0))) {
 					
-					// Año bisiesto
+					// Aï¿½o bisiesto
 					if(this.day>=30) {
 						return false;
 					}else {
@@ -43,7 +55,7 @@ public class Fecha {
 					
 				}else {
 					
-					// Año no es bisiesto
+					// Aï¿½o no es bisiesto
 					if(this.day>=29) {
 						return false;
 					}else {

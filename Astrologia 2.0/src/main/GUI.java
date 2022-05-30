@@ -11,10 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+
+import utilidades.Fecha;
+import utilidades.Hora;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 
 public class GUI {
@@ -22,15 +27,21 @@ public class GUI {
 	private static JFrame frmMiPrimeraGui;
 	private JTextField textFieldName;
 	
-	
 	JSpinner spinnerHour = new JSpinner();
 	JSpinner spinnerMinute = new JSpinner();
 	JSpinner spinnerDay = new JSpinner();
 	JSpinner spinnerMonth = new JSpinner();
 	JSpinner spinnerYear = new JSpinner();
+	static JTextArea textAreaInfo = new JTextArea();
+
+	public static void mostrarError(String texto) {
+		//Mensaje de error
+		JOptionPane.showMessageDialog(frmMiPrimeraGui,texto,"Error",JOptionPane.ERROR_MESSAGE);
+	}
 	
-	JLabel lblResult = new JLabel();
-	
+	public static void escribirMensaje(String texto) {
+		textAreaInfo.setText(texto);
+	}
 	
 	/**
 	 * Launch the application.
@@ -64,7 +75,7 @@ public class GUI {
 		frmMiPrimeraGui = new JFrame();
 		frmMiPrimeraGui.setTitle("Mi primera GUI 0.1");
 		frmMiPrimeraGui.setResizable(false);
-		frmMiPrimeraGui.setBounds(100, 100, 450, 320);
+		frmMiPrimeraGui.setBounds(100, 100, 450, 459);
 		frmMiPrimeraGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -87,10 +98,6 @@ public class GUI {
 		frmMiPrimeraGui.getContentPane().add(textFieldName);
 		textFieldName.setColumns(10);
 		
-
-		lblResult.setBounds(10, 220, 315, 14);
-		frmMiPrimeraGui.getContentPane().add(lblResult);
-		
 		JLabel lblNewLabel_2 = new JLabel("Hora");
 		lblNewLabel_2.setBounds(10, 41, 46, 14);
 		frmMiPrimeraGui.getContentPane().add(lblNewLabel_2);
@@ -100,9 +107,6 @@ public class GUI {
 		spinnerHour.setModel(new SpinnerNumberModel(0, 0, 23, 1));
 		spinnerHour.setBounds(90, 38, 70, 20);
 		frmMiPrimeraGui.getContentPane().add(spinnerHour);
-		
-		
-
 		
 		
 		spinnerMinute.setModel(new SpinnerNumberModel(0, 0, 59, 1));
@@ -148,38 +152,42 @@ public class GUI {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 
 				try {
 				
 					Integer day, month, year, hour, minute;
-					
+
 					day = (Integer) spinnerDay.getValue();
 					month = (Integer) spinnerMonth.getValue();
 					year = (Integer) spinnerYear.getValue();
 					hour = (Integer) spinnerHour.getValue();
 					minute = (Integer) spinnerMinute.getValue();
+
+					Fecha fecha = new Fecha(day,month,year);
+					Hora hora = new Hora(minute,hour);
 					
-					SearchFiles.search(day,month,year,minute,hour);
+					if(fecha.isCorrect() && hora.isCorrect()) {
+						SearchFiles.search(fecha,hora);
+					}else {
+						mostrarError("Datos Incorrectos");
+					}
 					
 				}catch(Exception e1){
-					
 					mostrarError("Datos Incorrectos");
-
+					System.out.println( e1.getMessage() );
 				}
 				
 				
 			}
 		});
-		btnNewButton.setBounds(335, 216, 89, 23);
+		btnNewButton.setBounds(335, 7, 89, 23);
 		frmMiPrimeraGui.getContentPane().add(btnNewButton);
+		textAreaInfo.setLineWrap(true);
+		
+
+		textAreaInfo.setEditable(false);
+		textAreaInfo.setBounds(10, 197, 414, 190);
+		frmMiPrimeraGui.getContentPane().add(textAreaInfo);
 	}
-	
-	
-	public static void mostrarError(String texto) {
-		//Mensaje de error
-		JOptionPane.showMessageDialog(frmMiPrimeraGui,texto,"Error",JOptionPane.ERROR_MESSAGE);
-	}
-	
-	
-	
 }

@@ -4,9 +4,18 @@ public class Hora {
 	
 	private Integer minute = 0, hour = 0;
 	
-	public Hora(Integer hour, Integer minute) {
+	public Hora(Integer minute, Integer hour) {
 		this.hour = hour;
 		this.minute = minute;
+	}
+	
+	public Integer getMinute() {
+		return minute;
+	}
+
+
+	public Integer getHour() {
+		return hour;
 	}
 	
 	

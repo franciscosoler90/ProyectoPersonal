@@ -9,15 +9,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import utilidades.Fecha;
+import utilidades.Hora;
+import utilidades.Linea;
 public class SearchFiles {
 	
 	
 
 	
-	public static void search(int day, int month, int year, int minute, int hour) {
+	public static void search(Fecha fecha, Hora hora) {
 		
-		
-		if(day<0 || day >31 || month <0 || month >12 || year<1901 || year>2099 || minute<0 || minute>59 || hour<0 || hour>23) {
+
+		if(fecha.getDay()<0 || fecha.getDay() >31 || fecha.getMonth() <0 || fecha.getMonth() >12 || fecha.getYear()<1901 || fecha.getYear()>2099 || hora.getMinute()<0 || hora.getMinute()>59 || hora.getHour()<0 || hora.getHour()>23) {
 			
 			GUI.mostrarError("Datos Incorrectos");
 		
@@ -30,9 +33,9 @@ public class SearchFiles {
 			//Comprueba
 			try (DirectoryStream<Path> fileList = Files.newDirectoryStream(pathName, filter)) {
 				
-				String fileName = "", line = "", stringYear = String.valueOf( year );
+				String fileName = "", line = "", stringYear = String.valueOf( fecha.getYear() );
 				String[] lineasArray = new String[2];
-				String[] values;
+				String[] values = null;
 				
 				@SuppressWarnings("unused")
 				Boolean comprobacion = false;
@@ -44,7 +47,7 @@ public class SearchFiles {
 					
 					fileName = file.getFileName().toString().substring(0, 4);
 					
-					//Si coincide con el año
+					//Si coincide con el aï¿½o
 					if (fileName.equals(stringYear)) {
 					
 						comprobacion = true;
@@ -58,17 +61,21 @@ public class SearchFiles {
 							fileName = file.getFileName().toString();
 							fileName = fileName.substring(0, fileName.length()-4);
 							
-							// Comprobar si coindice la misma fecha introducida, el nombre del archivo y el siguiente día
-							if(fileName.equals(values[2]) && (values[2].equals(String.valueOf(year)) && values[3].equals(String.valueOf(month)) && values[4].equals(String.valueOf(day) )) ) {
+							// Comprobar si coindice la misma fecha introducida, el nombre del archivo y el siguiente dï¿½a
+							if(fileName.equals(values[2]) && (values[2].equals(String.valueOf( fecha.getYear() )) && values[3].equals(String.valueOf( fecha.getMonth() )) && values[4].equals(String.valueOf( fecha.getDay() ))) || contador == 1) {
 								
 								lineasArray[contador] = line;
 								contador++;
-								
 								}
 							}
 							
-								br.close();
+							br.close();
 							
+							Linea lineas = new Linea(lineasArray[0], lineasArray[1], hora);
+								
+							GUI.escribirMensaje( lineas.SunToString() + "\n" + lineas.MoonToString() + "\n" + lineas.MercuryToString() + "\n" + lineas.VenusToString() + "\n" + lineas.MarsToString() + "\n" + lineas.JupiterToString() + "\n" + lineas.SaturnToString() );
+
+
 							}catch(FileNotFoundException e) {
 							
 								e.printStackTrace();

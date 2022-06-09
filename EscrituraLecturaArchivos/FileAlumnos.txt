@@ -1,3 +1,0 @@
-FICHERO DE ALUMNOS
-
-Alumno [Nombre= Javi, edad= 40, nota= 10.0]

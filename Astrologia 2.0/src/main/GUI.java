@@ -20,6 +20,9 @@ import utilidades.Hora;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
@@ -29,20 +32,93 @@ public class GUI {
 	private static JFrame frmMiPrimeraGui;
 	private JTextField textFieldName;
 	
-	JSpinner spinnerHour = new JSpinner();
-	JSpinner spinnerMinute = new JSpinner();
-	JSpinner spinnerDay = new JSpinner();
-	JSpinner spinnerMonth = new JSpinner();
-	JSpinner spinnerYear = new JSpinner();
+	static JSpinner spinnerHour = new JSpinner();
+	static JSpinner spinnerMinute = new JSpinner();
+	static JSpinner spinnerDay = new JSpinner();
+	static JSpinner spinnerMonth = new JSpinner();
+	static JSpinner spinnerYear = new JSpinner();
 	static JTextArea textAreaInfo = new JTextArea();
 
+	//Método que muestra mensaje de error
 	public static void mostrarError(String texto) {
-		//Mensaje de error
 		JOptionPane.showMessageDialog(frmMiPrimeraGui,texto,"Error",JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public static void escribirMensaje(String texto) {
 		textAreaInfo.setText(texto);
+	}
+	
+	public static void setSpinnerMinute (int minute) {
+		spinnerMinute.setValue(minute);
+	}
+	
+	public static void setSpinnerHour (int hour) {
+		spinnerHour.setValue(hour);
+	}
+	
+	public static void setSpinnerDay (int day) {
+		spinnerDay.setValue(day);
+	}
+	
+	public static void setSpinnerMonth (int month) {
+		spinnerMonth.setValue(month);
+	}
+	
+	public static void setSpinnerYear (int year) {
+		spinnerYear.setValue(year);
+	}
+	
+	public static void buscar() {
+		
+			try {
+				
+				Integer day, month, year, hour, minute;
+	
+				day = (Integer) spinnerDay.getValue();
+				month = (Integer) spinnerMonth.getValue();
+				year = (Integer) spinnerYear.getValue();
+				hour = (Integer) spinnerHour.getValue();
+				minute = (Integer) spinnerMinute.getValue();
+	
+				Fecha fecha = new Fecha(day,month,year);
+				Hora hora = new Hora(minute,hour);
+				
+				if(fecha.isCorrect() && hora.isCorrect()) {
+					SearchFiles.search(fecha,hora);
+				}else {
+					mostrarError("Datos Incorrectos");
+				}
+				
+			}catch(Exception e1){
+				mostrarError("Datos Incorrectos");
+				System.out.println( e1.getMessage() );
+			}
+		
+	}
+	
+	public static void mostrarAhora() {
+		
+
+			String fechaString = "yyyy/MM/dd";
+	
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern( fechaString );
+			LocalDate localDate = LocalDate.now();
+			LocalDate ld  = LocalDate.parse(dtf.format(localDate), DateTimeFormatter.ofPattern( fechaString ));
+			
+			LocalTime lt = LocalTime.now();
+	
+			int year = ld.getYear();
+			int month = ld.getMonthValue();
+			int day = ld.getDayOfMonth();
+			int minute = lt.getMinute();
+			int hour = lt.getHour();
+	
+			setSpinnerDay( day );
+			setSpinnerMonth( month );
+			setSpinnerYear( year );
+			setSpinnerMinute( minute );
+			setSpinnerHour( hour );		
+
 	}
 	
 	/**
@@ -154,36 +230,11 @@ public class GUI {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-
-				try {
-				
-					Integer day, month, year, hour, minute;
-
-					day = (Integer) spinnerDay.getValue();
-					month = (Integer) spinnerMonth.getValue();
-					year = (Integer) spinnerYear.getValue();
-					hour = (Integer) spinnerHour.getValue();
-					minute = (Integer) spinnerMinute.getValue();
-
-					Fecha fecha = new Fecha(day,month,year);
-					Hora hora = new Hora(minute,hour);
-					
-					if(fecha.isCorrect() && hora.isCorrect()) {
-						SearchFiles.search(fecha,hora);
-					}else {
-						mostrarError("Datos Incorrectos");
-					}
-					
-				}catch(Exception e1){
-					mostrarError("Datos Incorrectos");
-					System.out.println( e1.getMessage() );
-				}
-				
-				
+					//Llama al método buscar
+					buscar();
 			}
 		});
-		btnNewButton.setBounds(335, 7, 89, 23);
+		btnNewButton.setBounds(335, 11, 89, 23);
 		frmMiPrimeraGui.getContentPane().add(btnNewButton);
 		textAreaInfo.setLineWrap(true);
 		
@@ -191,5 +242,18 @@ public class GUI {
 		textAreaInfo.setEditable(false);
 		textAreaInfo.setBounds(10, 197, 414, 190);
 		frmMiPrimeraGui.getContentPane().add(textAreaInfo);
+		
+		JButton btnNewButton_Ahora = new JButton("Ahora");
+		btnNewButton_Ahora.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				mostrarAhora();
+				buscar();
+
+				
+			}
+		});
+		btnNewButton_Ahora.setBounds(335, 41, 89, 23);
+		frmMiPrimeraGui.getContentPane().add(btnNewButton_Ahora);
 	}
 }
